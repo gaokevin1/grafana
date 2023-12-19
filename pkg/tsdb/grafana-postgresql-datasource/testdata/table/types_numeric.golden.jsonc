@@ -1,0 +1,188 @@
+//  🌟 This was machine generated.  Do not edit. 🌟
+//  
+//  Frame[0] {
+//      "typeVersion": [
+//          0,
+//          0
+//      ],
+//      "executedQueryString": "SELECT * FROM tbl"
+//  }
+//  Name: 
+//  Dimensions: 12 Fields by 2 Rows
+//  +----------------+----------------+----------------+----------------+----------------+----------------+------------------+------------------+------------------+------------------+------------------+------------------+
+//  | Name: i16      | Name: i16nn    | Name: i32      | Name: i32nn    | Name: i64      | Name: i64nn    | Name: n          | Name: nnn        | Name: f32        | Name: f32nn      | Name: f64        | Name: f64nn      |
+//  | Labels:        | Labels:        | Labels:        | Labels:        | Labels:        | Labels:        | Labels:          | Labels:          | Labels:          | Labels:          | Labels:          | Labels:          |
+//  | Type: []*int16 | Type: []*int16 | Type: []*int32 | Type: []*int32 | Type: []*int64 | Type: []*int64 | Type: []*float64 | Type: []*float64 | Type: []*float64 | Type: []*float64 | Type: []*float64 | Type: []*float64 |
+//  +----------------+----------------+----------------+----------------+----------------+----------------+------------------+------------------+------------------+------------------+------------------+------------------+
+//  | 1              | 2              | 3              | 4              | 5              | 6              | 456.78           | 345.67           | 123.45           | 234.56           | 345.67           | 456.78           |
+//  | null           | 22             | null           | 44             | null           | 66             | null             | 2345.67          | null             | 1234.5601        | null             | 3456.78          |
+//  +----------------+----------------+----------------+----------------+----------------+----------------+------------------+------------------+------------------+------------------+------------------+------------------+
+//  
+//  
+//  🌟 This was machine generated.  Do not edit. 🌟
+{
+  "status": 200,
+  "frames": [
+    {
+      "schema": {
+        "meta": {
+          "typeVersion": [
+            0,
+            0
+          ],
+          "executedQueryString": "SELECT * FROM tbl"
+        },
+        "fields": [
+          {
+            "name": "i16",
+            "type": "number",
+            "typeInfo": {
+              "frame": "int16",
+              "nullable": true
+            }
+          },
+          {
+            "name": "i16nn",
+            "type": "number",
+            "typeInfo": {
+              "frame": "int16",
+              "nullable": true
+            }
+          },
+          {
+            "name": "i32",
+            "type": "number",
+            "typeInfo": {
+              "frame": "int32",
+              "nullable": true
+            }
+          },
+          {
+            "name": "i32nn",
+            "type": "number",
+            "typeInfo": {
+              "frame": "int32",
+              "nullable": true
+            }
+          },
+          {
+            "name": "i64",
+            "type": "number",
+            "typeInfo": {
+              "frame": "int64",
+              "nullable": true
+            }
+          },
+          {
+            "name": "i64nn",
+            "type": "number",
+            "typeInfo": {
+              "frame": "int64",
+              "nullable": true
+            }
+          },
+          {
+            "name": "n",
+            "type": "number",
+            "typeInfo": {
+              "frame": "float64",
+              "nullable": true
+            }
+          },
+          {
+            "name": "nnn",
+            "type": "number",
+            "typeInfo": {
+              "frame": "float64",
+              "nullable": true
+            }
+          },
+          {
+            "name": "f32",
+            "type": "number",
+            "typeInfo": {
+              "frame": "float64",
+              "nullable": true
+            }
+          },
+          {
+            "name": "f32nn",
+            "type": "number",
+            "typeInfo": {
+              "frame": "float64",
+              "nullable": true
+            }
+          },
+          {
+            "name": "f64",
+            "type": "number",
+            "typeInfo": {
+              "frame": "float64",
+              "nullable": true
+            }
+          },
+          {
+            "name": "f64nn",
+            "type": "number",
+            "typeInfo": {
+              "frame": "float64",
+              "nullable": true
+            }
+          }
+        ]
+      },
+      "data": {
+        "values": [
+          [
+            1,
+            null
+          ],
+          [
+            2,
+            22
+          ],
+          [
+            3,
+            null
+          ],
+          [
+            4,
+            44
+          ],
+          [
+            5,
+            null
+          ],
+          [
+            6,
+            66
+          ],
+          [
+            456.78,
+            null
+          ],
+          [
+            345.67,
+            2345.67
+          ],
+          [
+            123.45,
+            null
+          ],
+          [
+            234.56,
+            1234.5601
+          ],
+          [
+            345.67,
+            null
+          ],
+          [
+            456.78,
+            3456.78
+          ]
+        ]
+      }
+    }
+  ]
+}

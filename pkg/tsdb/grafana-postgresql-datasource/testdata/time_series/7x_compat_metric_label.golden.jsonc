@@ -1,0 +1,93 @@
+//  🌟 This was machine generated.  Do not edit. 🌟
+//  
+//  Frame[0] {
+//      "type": "timeseries-wide",
+//      "typeVersion": [
+//          0,
+//          0
+//      ],
+//      "executedQueryString": "SELECT * FROM tbl"
+//  }
+//  Name: 
+//  Dimensions: 3 Fields by 5 Rows
+//  +-------------------------------+------------------+------------------+
+//  | Name: Time                    | Name: a          | Name: b          |
+//  | Labels:                       | Labels:          | Labels:          |
+//  | Type: []time.Time             | Type: []*float64 | Type: []*float64 |
+//  +-------------------------------+------------------+------------------+
+//  | 2023-12-21 11:30:03 +0000 UTC | 10               | 15               |
+//  | 2023-12-21 11:31:03 +0000 UTC | 20               | 25               |
+//  | 2023-12-21 11:32:03 +0000 UTC | 30               | 35               |
+//  | 2023-12-21 11:33:03 +0000 UTC | 40               | 45               |
+//  | 2023-12-21 11:34:03 +0000 UTC | 50               | 55               |
+//  +-------------------------------+------------------+------------------+
+//  
+//  
+//  🌟 This was machine generated.  Do not edit. 🌟
+{
+  "status": 200,
+  "frames": [
+    {
+      "schema": {
+        "meta": {
+          "type": "timeseries-wide",
+          "typeVersion": [
+            0,
+            0
+          ],
+          "executedQueryString": "SELECT * FROM tbl"
+        },
+        "fields": [
+          {
+            "name": "Time",
+            "type": "time",
+            "typeInfo": {
+              "frame": "time.Time"
+            }
+          },
+          {
+            "name": "a",
+            "type": "number",
+            "typeInfo": {
+              "frame": "float64",
+              "nullable": true
+            }
+          },
+          {
+            "name": "b",
+            "type": "number",
+            "typeInfo": {
+              "frame": "float64",
+              "nullable": true
+            }
+          }
+        ]
+      },
+      "data": {
+        "values": [
+          [
+            1703158203000,
+            1703158263000,
+            1703158323000,
+            1703158383000,
+            1703158443000
+          ],
+          [
+            10,
+            20,
+            30,
+            40,
+            50
+          ],
+          [
+            15,
+            25,
+            35,
+            45,
+            55
+          ]
+        ]
+      }
+    }
+  ]
+}
