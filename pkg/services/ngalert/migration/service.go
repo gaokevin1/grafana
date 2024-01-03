@@ -178,7 +178,7 @@ func (ms *migrationService) migrateAllOrgs(ctx context.Context) error {
 			return fmt.Errorf("migrate org %d: %w", o.ID, err)
 		}
 
-		err = ms.newSync(o.ID).syncAndSaveState(ctx, dashboardUpgrades, contactPairs)
+		err = ms.newSync(o.ID).syncAndSaveState(ctx, dashboardUpgrades, contactPairs, false)
 		if err != nil {
 			return err
 		}
