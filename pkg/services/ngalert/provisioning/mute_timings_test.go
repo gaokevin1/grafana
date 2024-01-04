@@ -151,7 +151,7 @@ func TestGetMuteTiming(t *testing.T) {
 		prov.AssertCalled(t, "GetProvenance", mock.Anything, &result, orgID)
 	})
 
-	t.Run("service returns ErrMuteTimingsNotFound if no mute timings", func(t *testing.T) {
+	t.Run("service returns ErrTimeIntervalNotFound if no mute timings", func(t *testing.T) {
 		sut, store, _ := createMuteTimingSvcSut()
 		store.GetFn = func(ctx context.Context, orgID int64) (*cfgRevision, error) {
 			return &cfgRevision{cfg: &definitions.PostableUserConfig{}}, nil
@@ -159,10 +159,10 @@ func TestGetMuteTiming(t *testing.T) {
 
 		_, err := sut.GetMuteTiming(context.Background(), "Test1", orgID)
 
-		require.Truef(t, ErrMuteTimingsNotFound.Is(err), "expected ErrMuteTimingsNotFound but got %s", err)
+		require.Truef(t, ErrTimeIntervalNotFound.Is(err), "expected ErrTimeIntervalNotFound but got %s", err)
 	})
 
-	t.Run("service returns ErrMuteTimingsNotFound if no mute timing by name", func(t *testing.T) {
+	t.Run("service returns ErrTimeIntervalNotFound if no mute timing by name", func(t *testing.T) {
 		sut, store, _ := createMuteTimingSvcSut()
 		store.GetFn = func(ctx context.Context, orgID int64) (*cfgRevision, error) {
 			return revision, nil
@@ -170,7 +170,7 @@ func TestGetMuteTiming(t *testing.T) {
 
 		_, err := sut.GetMuteTiming(context.Background(), "Test123", orgID)
 
-		require.Truef(t, ErrMuteTimingsNotFound.Is(err), "expected ErrMuteTimingsNotFound but got %s", err)
+		require.Truef(t, ErrTimeIntervalNotFound.Is(err), "expected ErrTimeIntervalNotFound but got %s", err)
 	})
 
 	t.Run("service propagates errors", func(t *testing.T) {
@@ -238,7 +238,7 @@ func TestCreateMuteTimings(t *testing.T) {
 		Provenance:       definitions.Provenance(expectedProvenance),
 	}
 
-	t.Run("returns ErrMuteTimingInvalid if mute timings fail validation", func(t *testing.T) {
+	t.Run("returns ErrTimeIntervalInvalid if mute timings fail validation", func(t *testing.T) {
 		sut, _, _ := createMuteTimingSvcSut()
 		timing := definitions.MuteTimeInterval{
 			MuteTimeInterval: config.MuteTimeInterval{
@@ -249,10 +249,10 @@ func TestCreateMuteTimings(t *testing.T) {
 
 		_, err := sut.CreateMuteTiming(context.Background(), timing, orgID)
 
-		require.Truef(t, ErrMuteTimingInvalid.Base.Is(err), "expected ErrMuteTimingInvalid but got %s", err)
+		require.Truef(t, ErrTimeIntervalInvalid.Base.Is(err), "expected ErrTimeIntervalInvalid but got %s", err)
 	})
 
-	t.Run("returns ErrMuteTimingExists if mute timing with the name exists", func(t *testing.T) {
+	t.Run("returns ErrTimeIntervalExists if mute timing with the name exists", func(t *testing.T) {
 		sut, store, _ := createMuteTimingSvcSut()
 		store.GetFn = func(ctx context.Context, orgID int64) (*cfgRevision, error) {
 			return &cfgRevision{cfg: initialConfig()}, nil
@@ -266,7 +266,7 @@ func TestCreateMuteTimings(t *testing.T) {
 
 		_, err := sut.CreateMuteTiming(context.Background(), timing, orgID)
 
-		require.Truef(t, ErrMuteTimingExists.Is(err), "expected ErrMuteTimingExists but got %s", err)
+		require.Truef(t, ErrTimeIntervalExists.Is(err), "expected ErrTimeIntervalExists but got %s", err)
 	})
 
 	t.Run("saves mute timing and provenance", func(t *testing.T) {
@@ -399,10 +399,10 @@ func TestUpdateMuteTimings(t *testing.T) {
 
 		_, err := sut.UpdateMuteTiming(context.Background(), timing, orgID)
 
-		require.Truef(t, ErrMuteTimingInvalid.Base.Is(err), "expected ErrMuteTimingInvalid but got %s", err)
+		require.Truef(t, ErrTimeIntervalInvalid.Base.Is(err), "expected ErrTimeIntervalInvalid but got %s", err)
 	})
 
-	t.Run("returns ErrMuteTimingsNotFound if mute timing does not exist", func(t *testing.T) {
+	t.Run("returns ErrTimeIntervalNotFound if mute timing does not exist", func(t *testing.T) {
 		sut, store, _ := createMuteTimingSvcSut()
 		store.GetFn = func(ctx context.Context, orgID int64) (*cfgRevision, error) {
 			return &cfgRevision{cfg: initialConfig()}, nil
@@ -417,7 +417,7 @@ func TestUpdateMuteTimings(t *testing.T) {
 
 		_, err := sut.UpdateMuteTiming(context.Background(), timing, orgID)
 
-		require.Truef(t, ErrMuteTimingsNotFound.Is(err), "expected ErrMuteTimingsNotFound but got %s", err)
+		require.Truef(t, ErrTimeIntervalNotFound.Is(err), "expected ErrTimeIntervalNotFound but got %s", err)
 	})
 
 	t.Run("saves mute timing and provenance", func(t *testing.T) {
@@ -549,7 +549,7 @@ func TestDeleteMuteTimings(t *testing.T) {
 		prov.AssertCalled(t, "DeleteProvenance", mock.Anything, &definitions.MuteTimeInterval{MuteTimeInterval: config.MuteTimeInterval{Name: "no-timing"}}, orgID)
 	})
 
-	t.Run("returns ErrMuteTimingInUse if mute timing is used", func(t *testing.T) {
+	t.Run("returns ErrTimeIntervalInUse if mute timing is used", func(t *testing.T) {
 		sut, store, _ := createMuteTimingSvcSut()
 		store.GetFn = func(ctx context.Context, orgID int64) (*cfgRevision, error) {
 			return &cfgRevision{cfg: initialConfig()}, nil
@@ -560,7 +560,7 @@ func TestDeleteMuteTimings(t *testing.T) {
 		require.Len(t, store.Calls, 1)
 		require.Equal(t, "Get", store.Calls[0].Method)
 		require.Equal(t, orgID, store.Calls[0].Args[1])
-		require.Truef(t, ErrMuteTimingInUse.Is(err), "expected ErrMuteTimingInUse but got %s", err)
+		require.Truef(t, ErrTimeIntervalInUse.Is(err), "expected ErrTimeIntervalInUse but got %s", err)
 	})
 
 	t.Run("deletes mute timing and provenance", func(t *testing.T) {
