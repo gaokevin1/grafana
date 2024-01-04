@@ -78,7 +78,7 @@ func (svc *MuteTimingService) GetMuteTiming(ctx context.Context, name string, or
 // CreateMuteTiming adds a new mute timing within the specified org. The created mute timing is returned.
 func (svc *MuteTimingService) CreateMuteTiming(ctx context.Context, mt definitions.MuteTimeInterval, orgID int64) (definitions.MuteTimeInterval, error) {
 	if err := mt.Validate(); err != nil {
-		return definitions.MuteTimeInterval{}, makeErrMuteTimingInvalid(err)
+		return definitions.MuteTimeInterval{}, MakeErrMuteTimingInvalid(err)
 	}
 
 	revision, err := svc.config.Get(ctx, orgID)
@@ -108,7 +108,7 @@ func (svc *MuteTimingService) CreateMuteTiming(ctx context.Context, mt definitio
 // UpdateMuteTiming replaces an existing mute timing within the specified org. The replaced mute timing is returned. If the mute timing does not exist, ErrMuteTimingsNotFound is returned.
 func (svc *MuteTimingService) UpdateMuteTiming(ctx context.Context, mt definitions.MuteTimeInterval, orgID int64) (definitions.MuteTimeInterval, error) {
 	if err := mt.Validate(); err != nil {
-		return definitions.MuteTimeInterval{}, makeErrMuteTimingInvalid(err)
+		return definitions.MuteTimeInterval{}, MakeErrMuteTimingInvalid(err)
 	}
 
 	revision, err := svc.config.Get(ctx, orgID)

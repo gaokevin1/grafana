@@ -31,7 +31,8 @@ func makeErrBadAlertmanagerConfiguration(err error) error {
 	return ErrBadAlertmanagerConfiguration.Build(data)
 }
 
-func makeErrMuteTimingInvalid(err error) error {
+// MakeErrMuteTimingInvalid creates an error with the ErrMuteTimingInvalid template
+func MakeErrMuteTimingInvalid(err error) error {
 	data := errutil.TemplateData{
 		Public: map[string]interface{}{
 			"Error": err.Error(),
