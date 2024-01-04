@@ -393,7 +393,6 @@ func checkAlertRulesCount(t *testing.T, x *xorm.Engine, orgID int64, count int) 
 type testcase struct {
 	name         string
 	orgToMigrate int64
-	skipExisting bool
 
 	// Common Inputs
 	folders        []*dashboards.Dashboard
@@ -622,7 +621,8 @@ func TestCommonServicePatterns(t *testing.T) {
 			name:         "alert dashboard has missing folder, should migrate to new general alerting folder",
 			orgToMigrate: 1,
 			folders:      []*dashboards.Dashboard{f1, generalAlertingFolder},
-			dashboards:   []*dashboards.Dashboard{func(d dashboards.Dashboard) *dashboards.Dashboard { d.FolderID = 99999; return &d }(*d1), d2},
+			//nolint:staticcheck
+			dashboards: []*dashboards.Dashboard{func(d dashboards.Dashboard) *dashboards.Dashboard { d.FolderID = 99999; return &d }(*d1), d2},
 
 			initialLegacyState: legacyState{
 				alerts: append(alerts1, alerts2...),
@@ -647,7 +647,8 @@ func TestCommonServicePatterns(t *testing.T) {
 			name:         "alert dashboard in general folder, should migrate to new general alerting folder",
 			orgToMigrate: 1,
 			folders:      []*dashboards.Dashboard{f1, generalAlertingFolder},
-			dashboards:   []*dashboards.Dashboard{func(d dashboards.Dashboard) *dashboards.Dashboard { d.FolderID = 0; return &d }(*d1), d2},
+			//nolint:staticcheck
+			dashboards: []*dashboards.Dashboard{func(d dashboards.Dashboard) *dashboards.Dashboard { d.FolderID = 0; return &d }(*d1), d2},
 
 			initialLegacyState: legacyState{
 				alerts: append(alerts1[0:1:1], alerts2[0]),
